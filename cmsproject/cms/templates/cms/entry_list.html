@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Blog List{% endblock title %}
+
+{% block extrahead %}
+    <style>
+        table {
+            margin-top: 8px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h3 class="page-header">Blog List</h3>
+    <a href="{% url 'cms:entry_add' %}" class="btn btn-default btn-sm">Add</a>
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Contents</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entry in entries %}
+            <tr>
+                <td>{{ entry.id }}</td>
+                <td>{{ entry.title }}</td>
+                <td>{{ entry.contents }}</td>
+                <td>
+                    <a href="{% url 'cms:entry_mod' entry_id=entry.id %}" class="btn btn-default btn-sm">mod</a>
+                    <a href="{% url 'cms:entry_del' entry_id=entry.id %}" class="btn btn-default btn-sm">delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
