@@ -6,4 +6,4 @@ class Entry(models.Model):
     contents = models.TextField('contents')
 
     def __str__(self):
-        return self.name
+        return "<Entry('%s','%s', '%s')>" % (self.id, self.title, self.contents)
